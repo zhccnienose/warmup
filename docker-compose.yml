@@ -1,0 +1,25 @@
+version: '3.8'
+
+networks:
+  west2online:
+    driver: bridge
+
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=C310257813
+      - MYSQL_DATABASE=warmup
+      - MYSQL_ROOT=root
+      - MYSQL_PASSWORD=C310257813
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./config/sql:/docker-entrypoint-initdb.d/
+      - ./data/mysql:vra/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - west2online
